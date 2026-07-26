@@ -1,0 +1,47 @@
+{
+  "_note": "SYNTHETIC fixture: no real distribute cycle observed in recent operator history yet. Shape mirrors getParsedTransaction output for a hypothetical DISTRIBUTE_CYCLE with 12 recipients receiving positive SOL deltas. Replace with a real fixture once one occurs on-chain.",
+  "signature": "SYNTHETIC_DISTRIBUTE_12_RECIPIENTS_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+  "transaction": {
+    "slot": 999999999,
+    "blockTime": 1785600000,
+    "transaction": {
+      "signatures": ["SYNTHETIC_DISTRIBUTE_12_RECIPIENTS_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"],
+      "message": {
+        "accountKeys": [
+          { "pubkey": "5jCbp1FZ28f97jUme7rEMhVMSGVAT9hMqivW2Kg7U75Y", "signer": true, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder01111111111111111111111111111111111111", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder02222222222222222222222222222222222222", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder03333333333333333333333333333333333333", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder04444444444444444444444444444444444444", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder05555555555555555555555555555555555555", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder06666666666666666666666666666666666666", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder07777777777777777777777777777777777777", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder08888888888888888888888888888888888888", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder09999999999999999999999999999999999999", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder10aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder11bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "Holder12cccccccccccccccccccccccccccccccccccc", "signer": false, "writable": true, "source": "transaction" },
+          { "pubkey": "11111111111111111111111111111111", "signer": false, "writable": false, "source": "transaction" },
+          { "pubkey": "ComputeBudget111111111111111111111111111111", "signer": false, "writable": false, "source": "transaction" }
+        ],
+        "instructions": [
+          { "programId": "ComputeBudget111111111111111111111111111111", "accounts": [], "data": "3gJqkocMWaMm" },
+          { "program": "system", "programId": "11111111111111111111111111111111", "parsed": { "type": "transfer", "info": { "source": "5jCbp1FZ28f97jUme7rEMhVMSGVAT9hMqivW2Kg7U75Y", "destination": "Holder01111111111111111111111111111111111111", "lamports": 10000000 } }, "stackHeight": null }
+        ],
+        "recentBlockhash": "SyntheticBlockhash1111111111111111111111111"
+      }
+    },
+    "meta": {
+      "err": null,
+      "fee": 5000,
+      "preBalances": [1000000000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+      "postBalances": [869995000, 10000000, 12000000, 8000000, 15000000, 9000000, 11000000, 7000000, 13000000, 14000000, 10500000, 9500000, 11500000, 1, 1],
+      "innerInstructions": [],
+      "logMessages": [],
+      "preTokenBalances": [],
+      "postTokenBalances": []
+    },
+    "slot": 999999999,
+    "blockTime": 1785600000
+  }
+}
