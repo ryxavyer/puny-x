@@ -5,6 +5,8 @@ import type { Config } from './types';
 const DEFAULT_SOLICITATION_PATTERNS: RegExp[] = [
   /\b(buy|moon|pump|guaranteed|price target)\b/i,
   /\bx{2,}\d/i,
+  // No hashtags — the token is always referenced as $PUNY (ticker), never #PUNY.
+  /#\w+/,
 ];
 
 function parseBool(v: string | undefined, fallback: boolean): boolean {

@@ -6,14 +6,29 @@ const CONFIG = {
   solicitationPatterns: [
     /\b(buy|moon|pump|guaranteed|price target)\b/i,
     /\bx{2,}\d/i,
+    /#\w+/,
   ],
 };
 
 describe('contentCheck.check', () => {
   it('accepts a normal in-character post', () => {
     const s = initialState();
-    const r = check('log: burn confirmed. 46,451 $PUNY reduced to entropy. https://solscan.io/tx/abc', s, CONFIG);
+    const r = check('log: burn confirmed. 46,451 $PUNY reduced to entropy.', s, CONFIG);
     expect(r.ok).toBe(true);
+  });
+
+  it('accepts the $PUNY ticker but rejects the #PUNY hashtag', () => {
+    const s = initialState();
+    expect(check('46,451 $PUNY retired.', s, CONFIG).ok).toBe(true);
+    const r = check('46,451 #PUNY retired.', s, CONFIG);
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.reason).toBe('solicitation');
+  });
+
+  it('rejects any hashtag, not just #PUNY', () => {
+    const s = initialState();
+    expect(check('quiet cycle #crypto', s, CONFIG).ok).toBe(false);
+    expect(check('routine #solana burn', s, CONFIG).ok).toBe(false);
   });
 
   it('rejects solicitation words', () => {
