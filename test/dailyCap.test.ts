@@ -23,6 +23,7 @@ const baseConfig: Config = {
   solicitationPatterns: [],
   statePath: '/tmp/state.json',
   personaPath: '/tmp/persona.md',
+  initialSupply: 1_000_000_000,
 };
 
 describe('poster daily cap', () => {
@@ -80,6 +81,18 @@ describe('poster daily cap', () => {
     const result = await post('newest', 'window', s, baseConfig, now, fakeClient);
     expect(result.state.postHistory.length).toBe(50);
     expect(result.state.postHistory[49]?.text).toBe('newest');
+  });
+
+  it('milestone posts bypass the daily cap', async () => {
+    const now = new Date('2026-07-26T12:00:00Z');
+    const s: State = {
+      ...initialState(),
+      postCountByDate: { [utcDateKey(now)]: 999 },
+    };
+    const fakeClient = { tweet: vi.fn().mockResolvedValue({ id: 'milestone-tweet' }) };
+    const result = await post('25.02% gone.', 'milestone', s, baseConfig, now, fakeClient);
+    expect(result.posted).toBe(true);
+    expect(fakeClient.tweet).toHaveBeenCalledOnce();
   });
 
   it('skips without state mutation when X returns 403 duplicate', async () => {

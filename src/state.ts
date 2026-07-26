@@ -30,6 +30,10 @@ export function initialState(): State {
     postHistory: [],
     lastFlavorDate: null,
     lastDailyPostDate: null,
+    initialSupply: null,
+    lastMilestoneIndex: -1,
+    pendingMilestone: null,
+    recentBurns: [],
   };
 }
 
@@ -45,6 +49,10 @@ export async function loadState(statePath: string): Promise<State> {
       postHashes: parsed.postHashes ?? [],
       postCountByDate: parsed.postCountByDate ?? {},
       postHistory: parsed.postHistory ?? [],
+      lastMilestoneIndex: parsed.lastMilestoneIndex ?? -1,
+      pendingMilestone: parsed.pendingMilestone ?? null,
+      recentBurns: parsed.recentBurns ?? [],
+      initialSupply: parsed.initialSupply ?? null,
     };
   } catch (err: any) {
     if (err.code === 'ENOENT') return initialState();

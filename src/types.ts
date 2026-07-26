@@ -52,7 +52,34 @@ export interface PostHistoryEntry {
   kind: PostKind;
 }
 
-export type PostKind = 'window' | 'daily' | 'flavor';
+export type PostKind = 'window' | 'daily' | 'flavor' | 'milestone';
+
+export interface MilestoneCrossed {
+  label: string;
+  pctBurned: number;
+}
+
+export interface MilestoneNext {
+  label: string;
+  pctBurned: number;
+  etaDate: string | null;
+}
+
+export interface MilestoneContext {
+  crossed?: MilestoneCrossed;
+  next?: MilestoneNext;
+}
+
+export interface RecentBurn {
+  ts: string;
+  amount: number;
+}
+
+export interface PendingMilestone {
+  label: string;
+  pctBurned: number;
+  signature: string;
+}
 
 export interface State {
   lastSignature: string | null;
@@ -64,6 +91,10 @@ export interface State {
   postHistory: PostHistoryEntry[];
   lastFlavorDate: string | null;
   lastDailyPostDate: string | null;
+  initialSupply: number | null;
+  lastMilestoneIndex: number;
+  pendingMilestone: PendingMilestone | null;
+  recentBurns: RecentBurn[];
 }
 
 export interface Config {
@@ -86,6 +117,7 @@ export interface Config {
   solicitationPatterns: RegExp[];
   statePath: string;
   personaPath: string;
+  initialSupply: number;
 }
 
 export interface ComposeInput {
@@ -101,4 +133,5 @@ export interface ComposeInput {
     recipients?: number;
   } | null;
   dashboardUrl: string | null;
+  milestone: MilestoneContext | null;
 }

@@ -54,7 +54,9 @@ export async function post(
 ): Promise<PostResult> {
   const today = utcDateKey(now);
   const postsToday = state.postCountByDate[today] ?? 0;
-  if (postsToday >= config.maxPostsPerDay) {
+  // Milestone posts bypass the cap — persona treats a crossing as the biggest
+  // news the account ever reports, so it must never be silently skipped.
+  if (kind !== 'milestone' && postsToday >= config.maxPostsPerDay) {
     log.warn('daily post cap hit; skipping', {
       cap: config.maxPostsPerDay,
       postsToday,

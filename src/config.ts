@@ -94,5 +94,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     solicitationPatterns: [...DEFAULT_SOLICITATION_PATTERNS, ...extraPatterns],
     statePath: source.STATE_PATH || path.resolve(process.cwd(), 'state.json'),
     personaPath: source.PERSONA_PATH || path.resolve(process.cwd(), 'persona.md'),
+    // pump.fun default mint supply is 1B tokens. Override via env if this token
+    // launched with a different initial supply — used only for milestone %.
+    initialSupply: parseFloatWithDefault(source.PUNY_INITIAL_SUPPLY, 1_000_000_000),
   };
 }
